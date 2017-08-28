@@ -1,17 +1,21 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Lista de </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
+  <h2>NEC Aplicación:</h2>
   <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
+    Llenee todos los formularios para obtener los datos de Salida y la Gráfica. {{auxGlobal}}
   </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <p>{{appcomponentts}}</p>
+  <ion-list>
+    <button ion-item *ngFor="let item of lista" (click)="cambiarAux(item)">
+      <ion-icon name="ios-analytics" item-start></ion-icon>
+      {{item.name}}
+      <ion-icon name="checkmark-circle" isActive="false" item-end style="color: greenyellow;"></ion-icon>
+    </button>
+  </ion-list>  
+
 </ion-content>

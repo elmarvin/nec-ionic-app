@@ -1,0 +1,91 @@
+<!--
+  Generated template for the FactorZPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Factor Z {{pasoNro}}
+      <ion-icon name="information-circle" (click)="doAlert()"></ion-icon>
+    </ion-title>
+    <ion-range [disabled]="true" (ionChange)="changeRange()" min="1" max="7" step="1" snaps="true" [(ngModel)]="pasoNro" color="danger">
+      <ion-icon range-left color="danger" name="arrow-dropleft-circle" (click)="doRetro()"></ion-icon>
+      <ion-icon range-right color="danger" name="arrow-dropright-circle" (click)="cambiarAux()"></ion-icon>
+    </ion-range>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-searchbar
+    [(ngModel)]="searchTerm"
+    [showCancelButton]="shouldShowCancel"
+    (ionInput)="setFilteredItems()"
+    (ionCancel)="cancelSearch()">    
+  </ion-searchbar>
+  <ion-list>
+      <button ion-item *ngFor="let item of items" (click)="itemSelected(item)">
+        {{ item.poblacion }}
+        <p>{{ item.provincia }} - {{ item.canton }} - {{ item.parroquia }}</p>
+      </button>
+  </ion-list>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Provincia: </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-select [(ngModel)]="provincia" submitText="Ok" cancelText="Cancelar" (ionChange)="onChangeProv(provincia)">
+        <ion-option *ngFor="let provincia of aux.provincias" [value]="provincia">
+          {{provincia.name}}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Cantón::</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-select [(ngModel)]="canton" submitText="Ok" cancelText="Cancelar" (ionChange)="onChangeCanton(canton)">
+        <ion-option *ngFor="let canton of provincia.cantones" [value]="canton">
+          {{canton.name}}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Parroquia:</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-select [(ngModel)]="parroquia" submitText="Ok" cancelText="Cancelar" (ionChange)="onChangeParroquia(parroquia)">
+        <ion-option *ngFor="let parroquia of canton.parroquias" [value]="parroquia">
+          {{parroquia.name}}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Población:</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-select [(ngModel)]="poblacion" submitText="Ok" cancelText="Cancelar" (ionChange)="onChangePoblacion(poblacion)">
+        <ion-option *ngFor="let poblacion of parroquia.poblacion" [value]="poblacion">
+          {{poblacion.name}}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab top right edge>
+    <button color="vibrant" (click)="openModal({charNum: 0})" ion-fab mini><ion-icon name="compass"></ion-icon></button>
+    <!--<button ion-fab (click)="showPrompt()" mini><ion-icon name="search"></ion-icon></button>-->
+  </ion-fab>
+
+  <ion-fab right bottom>
+    <!--<button ion-fab color="vibrant" mini><ion-icon name="arrow-forward"></ion-icon></button>-->
+    <button ion-fab mini (click)="cambiarAux()"><ion-icon name="arrow-round-forward"></ion-icon></button>
+    <!--<ion-fab-list side="top">      
+      <button ion-fab (click)="showPrompt()"><ion-icon name="search"></ion-icon></button>
+    </ion-fab-list>-->
+  </ion-fab>
+</ion-content>

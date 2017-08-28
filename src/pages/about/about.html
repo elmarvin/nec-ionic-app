@@ -1,11 +1,45 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      About
+      Datos de Salida
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+<ion-list >
+  <ion-item>
+    <strong>Z = </strong> {{varZ}}
+  </ion-item>
+  <ion-item>
+    <strong>Fa = </strong> {{varFa}}
+  </ion-item>
+  <ion-item>
+    <strong>Fd = </strong> {{varFd}}
+  </ion-item>
+  <ion-item>
+    <strong>Fs = </strong> {{varFs}}
+  </ion-item>
+  <ion-item>
+    <strong>n = </strong> {{varn}}
+  </ion-item>
+  <ion-item>
+    <strong>r = </strong> {{varr}}
+  </ion-item>
+  <ion-item>
+    <strong>To = </strong> {{varTo}}
+  </ion-item>
+  <ion-item>
+    <strong>Tc = </strong> {{varTc}}
+  </ion-item>
+</ion-list>
+
+<ion-fab right bottom>
+  <!--<button ion-fab color="vibrant" mini><ion-icon name="arrow-forward"></ion-icon></button>-->
+  <button ion-fab mini (click)="cambiarAux()"><ion-icon name="stats"></ion-icon></button>
+  <!--<ion-fab-list side="top">      
+    <button ion-fab (click)="showPrompt()"><ion-icon name="search"></ion-icon></button>
+  </ion-fab-list>-->
+</ion-fab>
 
 </ion-content>
